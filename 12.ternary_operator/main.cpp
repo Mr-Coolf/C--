@@ -16,8 +16,7 @@ int main(int argc, char const *argv[])
 
 
     bool hungry = true;
-    std::string res = hungry ? "U r hungry" : "U r full";
-    std::cout << res;
+    std::cout << (hungry ? "U r hungry" : "U r full");
 
     return 0;
 }
