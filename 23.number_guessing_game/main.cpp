@@ -1,5 +1,7 @@
 #include <iostream>
 #include <ctime>
+#include <chrono>
+#include <thread>
 
 int main(int argc, char const *argv[])
 {
@@ -47,7 +49,7 @@ int main(int argc, char const *argv[])
         do
         {
             std::cout << "Do you want to play again? (Y/n): ";
-            std::cin >> playingAgain;
+            std::getline(std::cin >> std::ws, playingAgain);
         } while (playingAgain != "n" && playingAgain != "N" && playingAgain != "no" && playingAgain != "No" && playingAgain != "NO" && playingAgain != "nO" &&
                  playingAgain != "Y" && playingAgain != "y" && playingAgain != "Yes" && playingAgain != "yes" && playingAgain != "yEs" && playingAgain != "yeS" && playingAgain != "YEs" && playingAgain != "yES" && playingAgain != "YES");
 
@@ -70,6 +72,11 @@ int main(int argc, char const *argv[])
     } while (playing);
 
     std::cout << "Thanks for playing!\n";
+    
+    using namespace std::this_thread; // sleep_for, sleep_until
+    using namespace std::chrono; // nanoseconds, system_clock, seconds
+
+    sleep_for(seconds(5));
 
     return 0;
 }
