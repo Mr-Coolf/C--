@@ -13,40 +13,45 @@ int main(int argc, char const *argv[])
     std::string playingAgain;
 
     std::cout << "***** NUMBER GUESSING GAME *****\n";
-    
-    while (maxNum <= 0) {
-        std::cout << "Enter maximum number: ";
-        std::cin >> maxNum;
-    }
-    
-    do{
+    do
+    {
+        maxNum = 0;
+        while (maxNum <= 0)
+        {
+            std::cout << "Enter maximum number: ";
+            std::cin >> maxNum;
+        }
         num = (rand() % maxNum) + 1;
+        guessing = true;
         while (guessing)
         {
             do
             {
                 std::cout << "Enter your guess: ";
                 std::cin >> guess;
-            } while (guess <= 0);            
+            } while (guess <= 0);
+            tries++;
             if (guess == num)
             {
                 guessing = false;
             }
             else
             {
-                std::cout << "It is not right! Try again.\n";
+                std::cout << (guess > num ? "Try lower.\n" : "Try higher.\n");
             }
-            
         }
-        std::cout << "Congratulations, you won!\n";
+        if (tries == 1)
+            std::cout << "Congratulations, you won!\nIt took you just " << tries << " try!\n";
+        else
+            std::cout << "Congratulations, you won!\nIt took you just " << tries << " tries!\n";
         do
         {
             std::cout << "Do you want to play again? (Y/n): ";
             std::cin >> playingAgain;
-        } while (playingAgain != "n" && playingAgain != "N" && playingAgain != "no" && playingAgain != "No" && playingAgain!= "NO" && playingAgain != "nO" &&
-        playingAgain != "Y" && playingAgain != "y" && playingAgain != "Yes" && playingAgain != "yes" && playingAgain != "yEs" && playingAgain != "yeS" && playingAgain != "YEs" && playingAgain != "yES" && playingAgain != "YES" );
+        } while (playingAgain != "n" && playingAgain != "N" && playingAgain != "no" && playingAgain != "No" && playingAgain != "NO" && playingAgain != "nO" &&
+                 playingAgain != "Y" && playingAgain != "y" && playingAgain != "Yes" && playingAgain != "yes" && playingAgain != "yEs" && playingAgain != "yeS" && playingAgain != "YEs" && playingAgain != "yES" && playingAgain != "YES");
 
-        if (playingAgain == "n" || playingAgain == "N" || playingAgain == "no" || playingAgain == "No" || playingAgain== "NO" || playingAgain == "nO")
+        if (playingAgain == "n" || playingAgain == "N" || playingAgain == "no" || playingAgain == "No" || playingAgain == "NO" || playingAgain == "nO")
         {
             playing = false;
         }
@@ -60,10 +65,11 @@ int main(int argc, char const *argv[])
             std::cout << "go kys";
             playing = false;
         }
-        
-        
-        
-    }while(playing);
+        std::cout << '\n';
+
+    } while (playing);
+
+    std::cout << "Thanks for playing!\n";
 
     return 0;
 }
